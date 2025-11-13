@@ -43,6 +43,39 @@ class TablesSessionsController {
       next(error);
     }
   }
+
+  async update(request: Request, response: Response, next: NextFunction) {
+    try {
+      const id = z
+        .string()
+        .transform((value) => Number(value))
+        .refine((value) => !isNaN(value), {
+          message: "ID inválido",
+        })
+        .parse(request.params.id);
+
+      const session = await knex<TablesSessionsRepository>("tables_sessions")
+        .select()
+        .where({ id })
+        .first();
+
+      if (!session) {
+        throw new AppError("Sessão não encontrada.", 404);
+      }
+
+      if (session.closed_at) {
+        throw new AppError("Sessão já está encerrada.");
+      }
+
+      await knex<TablesSessionsRepository>("tables_sessions")
+        .update({ closed_at: knex.fn.now() })
+        .where({ id });
+
+      return response.json();
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 export { TablesSessionsController };
