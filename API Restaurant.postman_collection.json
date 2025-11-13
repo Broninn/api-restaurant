@@ -1,0 +1,209 @@
+{
+	"info": {
+		"_postman_id": "1d9c8d1a-6db4-41d7-8384-e893a767f044",
+		"name": "API Restaurant",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18686724",
+		"_collection_link": "https://speeding-capsule-800254.postman.co/workspace/Curso-NodeJS~813dd909-a43a-4c61-8f61-9a9403d29319/collection/18686724-1d9c8d1a-6db4-41d7-8384-e893a767f044?action=share&source=collection_link&creator=18686724"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Index",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/{{RESOURCEProducts}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"{{RESOURCEProducts}}"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "exe",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Executivo de frango grelhado\",\r\n    \"price\": 70\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/{{RESOURCEProducts}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"{{RESOURCEProducts}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Porção de batata frita\",\r\n    \"price\": 32\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/{{RESOURCEProducts}}/2",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"{{RESOURCEProducts}}",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/{{RESOURCEProducts}}/2",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"{{RESOURCEProducts}}",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tables",
+			"item": [
+				{
+					"name": "Index",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/{{RESOURCETables}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"{{RESOURCETables}}"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "exe",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tables Sessions",
+			"item": [
+				{
+					"name": "Open",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"table_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/{{RESOURCETables-sessions}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"{{RESOURCETables-sessions}}"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "exe",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"table_session_id\": 1,\r\n    \"product_id\": 28,\r\n    \"quantity\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/{{RESOURCEOrders}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"{{RESOURCEOrders}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
