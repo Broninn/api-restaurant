@@ -48,7 +48,33 @@ class OrdersController {
 
       return response.status(201).json();
     } catch (error) {
-        next(error);
+      next(error);
+    }
+  }
+
+  async index(request: Request, response: Response, next: NextFunction) {
+    try {
+      const { table_session_id } = request.params;
+
+      const order = await knex("orders")
+        .select(
+          "orders.id",
+          "orders.table_session_id",
+          "orders.product_id",
+          "products.name",
+          "orders.price",
+          "orders.quantity",
+          knex.raw("(orders.price * orders.quantity) as total_price"),
+          "orders.created_at",
+          "orders.updated_at"
+        )
+        .join("products", "orders.product_id", "products.id")
+        .where({ table_session_id })
+        .orderBy("orders.created_at", "asc");
+
+      return response.status(200).json(order);
+    } catch (error) {
+      next(error);
     }
   }
 }
