@@ -6,7 +6,13 @@ class ProductsController {
   async index(request: Request, response: Response, next: NextFunction) {
     try {
       // Logic to list products
-      return response.status(200).json({ message: "List of products" });
+      const { name } = request.query;
+      const products = await knex<ProductRepository>("products")
+        .select()
+        .whereLike("name", `%${name ?? ""}%`)
+        .orderBy("name");
+
+      return response.status(200).json(products);
     } catch (error) {
       next(error);
     }
